@@ -1,0 +1,231 @@
+    //sass --style compressed --watch ./assets/scss:./assets/css/build
+    @import './inc_style.scss';
+    $first-division :3;
+    $second-division :1;
+    $third-division :2;
+    /*  system division Settings */
+    
+    $chat-header-background:#393c45;
+    $chat-header-font-color:#94a2c9;
+    $chat-header-btn-background:#2b2e37;
+    $chat-header-btn-color:#8996ba;
+    $chat-body-background:#25272d;
+    $chat-foot-background:#25272d;
+    /*  system color Settings */
+    
+    @mixin divisionWrap($division) {
+        @if $division==1 {
+            .chatWrap {
+                height: 100%;
+            }
+        }
+        @if $division==2 {
+            .chatWrap {
+                height: 50%;
+            }
+        }
+        @if $division==3 {
+            .chatWrap {
+                &:nth-of-type(1) {
+                    height: 34%;
+                }
+                &:nth-of-type(2) {
+                    height: 33%;
+                }
+                &:nth-of-type(3) {
+                    height: 33%;
+                }
+            }
+        }
+    }
+
+    .popupBg{
+        position:fixed;
+        z-index:999;
+        top:0;
+        left:0;
+        background:#101010d9;
+        width:100%;
+        height:100%;
+        display:none;
+        &.on{
+            display:block;
+        }
+        .popupWrap{
+            position:absolute;
+            top:50%;
+            left:50%;
+            transform:translate(-50%, -50%);
+            width:600px;
+            height:auto;
+            background:#393c45;
+            header{
+                width:100%;
+                height:65px;
+                background:#393c45;
+                p{
+                    color:#94a2c9;
+                    line-height:65px;
+                    text-indent:30px;
+                    font-size:20px;
+                    font-weight:700;
+                }
+            }
+            section{
+                width:100%;
+                height:130px;
+                background:#25272d;
+            }
+        }
+    }
+    
+    header {
+        background: #2b2e37;
+        width: 100%;
+        height: 86px;
+        position: relative;
+        img {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+    }
+    
+    section {
+        height: calc(100% - 86px);
+        div.chatContainer {
+            float: left;
+            width: 33.33%;
+            height: 100%;
+            background: #aaa;
+            &:nth-of-type(1) {
+                width: 33%;
+                @include divisionWrap($first-division);
+            }
+            &:nth-of-type(2) {
+                width: 34%;
+                @include divisionWrap($second-division);
+                border-left: 1px solid #474952;
+                border-right: 1px solid #474952;
+            }
+            &:nth-of-type(3) {
+                width: 33%;
+                @include divisionWrap($third-division);
+            }
+        }
+        .chatWrap {
+            height: 100%;
+        }
+        .chatHeader {
+            position: relative;
+            width: 100%;
+            height: 61px;
+            background: $chat-header-background;
+            input[type=button] {
+                background: $chat-header-btn-background;
+                color: $chat-header-btn-color;
+                border: 0;
+                width: 82px;
+                height: 38px;
+                border-radius: 4px;
+                &:nth-of-type(1) {
+                    @include positionAbsolute(null, null, null, 10px, true);
+                }
+                &:nth-of-type(2) {
+                    @include positionAbsolute(null, 10px, null, null, true);
+                    &.on{
+                        background:rgb(80, 99, 154);
+                        color:#fff;
+                        border:1px solid #94a2c9;
+                    }
+                }
+                &:hover{
+                    background:rgb(80, 99, 154);
+                    color:#fff;                        
+                }
+            }
+            h1 {
+                position: absolute;
+                @include positionCenterAlign;
+                font-size: 19pt;
+                color: $chat-header-font-color;
+            }
+        }
+        .chatBody {
+            width: 100%;
+            height: calc(100% - 127px);
+            background: $chat-body-background;
+            padding: 10px 30px;
+            overflow-y: auto; 
+            p {
+                color: #fff;
+                font-size: 15px;
+                overflow: hidden;
+                padding: 1px 0;
+                &.accent {
+                    color: #fc3e5e;
+                }
+                .content{
+                    text-overflow: ellipsis;
+                    overflow: hidden;
+                }
+                .modifyOne{
+                    margin-left:10px;
+                    &:hover{
+                        cursor:pointer;
+                    }
+                }
+                .deleteOne{
+                    display:inline-block;
+                    text-align:center;
+                    font-weight:500;
+                    width:20px;
+                    height:20px;
+                    font-size:15px;
+                    line-height:19px;
+                    color:#fff;
+
+                    &:hover{
+                        cursor:pointer;
+                    }
+                }
+            }
+        }
+        .chatFoot {
+            position: relative;
+            width: 100%;
+            height: 66px;
+            background: $chat-foot-background;
+        }
+        .chatValue {
+            position: absolute;
+            top: 7px;
+            right: 30px;
+            width: calc(100% - 274px);
+            height: 47px;
+            text-indent: 20px;
+            background: #25272d;
+            border: 1px solid #5f677e;
+            color: #fff;
+            border-radius: 30px;
+            padding-right: 15%;
+        }
+        .submitBtn, .modifyBtn {
+            background: #5f677e;
+            width: 70px;
+            height: 35px;
+            position: absolute;
+            top: 13px;
+            right: 38px;
+            line-height: 35px;
+            text-align: center;
+            font-size: 13px;
+            border-radius: 30px;
+            color: #fff;
+            &:hover {
+                cursor: pointer;
+            }
+        }
+    }
+    

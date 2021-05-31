@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>main</title>
+    <link type="text/css" rel="stylesheet" href="/css/reset.css">
+    <link type="text/css" rel="stylesheet" href="/css/build/main.css">
+    <link type="text/css" rel="stylesheet" href="/css/build/custom-select-box.css">
+    <script src="/libs/jquery.js"></script>
+    <script src="/libs/moment.js"></script>
+    <script src="/libs/custom-select-box.js"></script>
+    <script src="/libs/io.js"></script>
+    
+    <script src="/js/inc_func.js"></script>
+    <script src="/js/ajax_functions.js"></script>
+    <script src="/js/socket.js"></script>
+    <script src="/js/board.js"></script> 
+</head>
+
+<body>
+    <% const inputMaxLength = 50 %>
+    <%- include('./component/popup.html') %>
+    <%- include('./component/header.html') %>
+    <section>
+        <div class="chatContainer">
+            <div class="chatWrap">
+                <div class="chatHeader">
+                    <input type="button" class="clear" data-idx="1" value="Clear">
+                    <h1>주의사항</h1>
+                    <input type="button" class="important" value="R">
+                </div>
+                <div class="chatBody custom-scroll board1">
+                    <div>
+                        
+                    </div>
+                </div>
+                <div class="chatFoot">
+                    <!-- Custom select structure -->
+                    <div class="select_mate" data-mate-select="active">
+                        <select name="" onchange="" onclick="return false;" id="">
+                            <option value="">시간</option>
+                            <% for(let i=9;i<23;i++){ %>
+                                <option value="<%=i%>"><%= i+"시" %></option>
+                            <% } %>
+                        </select>
+                        <p class="selecionado_opcion board_hour_1" onclick="open_select(this)"></p>
+                        <span onclick="open_select(this)" class="icon_select_mate">
+                            <svg fill="#fff" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M7.41 7.84L12 12.42l4.59-4.58L18 9.25l-6 6-6-6z"/>
+                                <path d="M0-.75h24v24H0z" fill="none"/>
+                            </svg>
+                        </span>
+                        <div class="cont_list_select_mate">
+                            <ul class="cont_select_int" style="top:60px;"></ul>
+                        </div>
+                    </div>
+                    <!-- Custom select structure -->
+                    <div class="select_mate" data-mate-select="active" style="margin-left:10px;">
+                        <select name="" onchange="" onclick="return false;" id="">
+                            <option value="">분</option>
+                            <% for(let i=0;i<60;i+=5){ %>
+                                <% if(i.toString().length === 1){%>
+                                    <option value="<%= "0"+i %>"><%= "0"+i+"분" %></option>
+                                <% }else{ %>
+                                    <option value="<%= i %>"><%= i+"분" %></option>
+                                <% } %>
+                            <% } %>                            
+                        </select>
+                        <p class="selecionado_opcion board_minute_1" onclick="open_select(this)"></p>
+                        <span onclick="open_select(this)" class="icon_select_mate">
+                            <svg fill="#fff" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M7.41 7.84L12 12.42l4.59-4.58L18 9.25l-6 6-6-6z"/>
+                                <path d="M0-.75h24v24H0z" fill="none"/>
+                            </svg>
+                        </span>
+                        <div class="cont_list_select_mate">
+                            <ul class="cont_select_int" style="top:60px;"> </ul>
+                        </div>
+                    </div>
+                    <input type="txet" class="chatValue content_1" maxlength="<%=inputMaxLength%>" placeholder="내용을 입력해주세요.">
+                    <input type="submit" data-idx="1" class="submitBtn" value="입력">
+                </div>
+            </div>
+            <div class="chatWrap">
+                <div class="chatHeader">
+                    <input type="button" class="clear" data-idx="2" value="Clear">
+                    <h1>자유 이용권</h1>
+                    <input type="button" class="important" value="R">
+                </div>
+                <div class="chatBody custom-scroll board2">
+                    <div>
+                        
+                    </div>
+                </div>
+                <div class="chatFoot">
+                    <!-- Custom select structure -->
+                    <div class="select_mate" data-mate-select="active">
+                        <select name="" onchange="" onclick="return false;" id="">
+                            <option value="">시간</option>
+                            <% for(let i=9;i<23;i++){ %>
+                                <option value="<%=i%>"><%= i+"시" %></option>
+                            <% } %>
+                        </select>
+                        <p class="selecionado_opcion board_hour_2" onclick="open_select(this)"></p>
+                        <span onclick="open_select(this)" class="icon_select_mate">
+                            <svg fill="#fff" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M7.41 7.84L12 12.42l4.59-4.58L18 9.25l-6 6-6-6z"/>
+                                <path d="M0-.75h24v24H0z" fill="none"/>
+                            </svg>
+                        </span>
+                        <div class="cont_list_select_mate">
+                            <ul class="cont_select_int"> </ul>
+                        </div>
+                    </div>
+                    <!-- Custom select structure -->
+                    <div class="select_mate" data-mate-select="active" style="margin-left:10px;">
+                        <select name="" onchange="" onclick="return false;" id="">
+                            <option value="">분</option>
+                            <% for(let i=0;i<60;i+=5){ %>
+                                <% if(i.toString().length === 1){%>
+                                    <option value="<%= "0"+i %>"><%= "0"+i+"분" %></option>
+                                <% }else{ %>
+                                    <option value="<%= i %>"><%= i+"분" %></option>
+                                <% } %>
+                            <% } %>    
+                        </select>
+                        <p class="selecionado_opcion board_minute_2" onclick="open_select(this)"></p>
+                        <span onclick="open_select(this)" class="icon_select_mate">
+                            <svg fill="#fff" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M7.41 7.84L12 12.42l4.59-4.58L18 9.25l-6 6-6-6z"/>
+                                <path d="M0-.75h24v24H0z" fill="none"/>
+                            </svg>
+                        </span>
+                        <div class="cont_list_select_mate">
+                            <ul class="cont_select_int"> </ul>
+                        </div>
+                    </div>
+                    <input type="txet" class="chatValue content_2" maxlength="<%=inputMaxLength%>" placeholder="내용을 입력해주세요.">
+                    <input type="submit" data-idx="2" class="submitBtn" value="입력">
+                </div>
+            </div>
+            <div class="chatWrap">
+                <div class="chatHeader">
+                    <input type="button" class="clear" data-idx="3" value="Clear">
+                    <h1>외래</h1>
+                    <input type="button" class="important" value="R">
+                </div>
+                <div class="chatBody custom-scroll board3">\
+                    <div>
+                        
+                    </div>
+                </div>
+                <div class="chatFoot">
+                    <!-- Custom select structure -->
+                    <div class="select_mate" data-mate-select="active">
+                        <select name="" onchange="" onclick="return false;" id="">
+                            <option value="">시간</option>
+                            <% for(let i=9;i<23;i++){ %>
+                                <option value="<%=i%>"><%= i+"시" %></option>
+                            <% } %>
+                        </select>
+                        <p class="selecionado_opcion board_hour_3" onclick="open_select(this)"></p>
+                        <span onclick="open_select(this)" class="icon_select_mate">
+                            <svg fill="#fff" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M7.41 7.84L12 12.42l4.59-4.58L18 9.25l-6 6-6-6z"/>
+                                <path d="M0-.75h24v24H0z" fill="none"/>
+                            </svg>
+                        </span>
+                        <div class="cont_list_select_mate">
+                            <ul class="cont_select_int"> </ul>
+                        </div>
+                    </div>
+                    <!-- Custom select structure -->
+                    <div class="select_mate" data-mate-select="active" style="margin-left:10px;">
+                        <select name="" onchange="" onclick="return false;" id="">
+                            <option value="">분</option>
+                            <% for(let i=0;i<60;i+=5){ %>
+                                <% if(i.toString().length === 1){%>
+                                    <option value="<%= "0"+i %>"><%= "0"+i+"분" %></option>
+                                <% }else{ %>
+                                    <option value="<%= i %>"><%= i+"분" %></option>
+                                <% } %>
+                            <% } %>
+                        </select>
+                        <p class="selecionado_opcion board_minute_3" onclick="open_select(this)"></p>
+                        <span onclick="open_select(this)" class="icon_select_mate">
+                            <svg fill="#fff" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M7.41 7.84L12 12.42l4.59-4.58L18 9.25l-6 6-6-6z"/>
+                                <path d="M0-.75h24v24H0z" fill="none"/>
+                            </svg>
+                        </span>
+                        <div class="cont_list_select_mate">
+                            <ul class="cont_select_int"> </ul>
+                        </div>
+                    </div>
+                    <input type="txet" class="chatValue content_3" maxlength="<%=inputMaxLength%>" placeholder="내용을 입력해주세요.">
+                    <input type="submit" data-idx="3" class="submitBtn" value="입력">
+                </div>
+            </div>
+        </div>
+        <div class="chatContainer">
+            <div class="chatWrap">
+                <div class="chatHeader">
+                    <input type="button" class="clear" data-idx="4" value="Clear">
+                    <h1>올인원</h1>
+                    <input type="button" class="important" value="R">
+                </div>
+                <div class="chatBody custom-scroll board4">
+                    <div>
+                        
+                    </div>
+                </div>
+                <div class="chatFoot">
+                    <!-- Custom select structure -->
+                    <div class="select_mate" data-mate-select="active">
+                        <select name="" onchange="" onclick="return false;" id="">
+                            <option value="">시간</option>
+                            <% for(let i=9;i<23;i++){ %>
+                                <option value="<%=i%>"><%= i+"시" %></option>
+                            <% } %>
+                        </select>
+                        <p class="selecionado_opcion board_hour_4" onclick="open_select(this)"></p>
+                        <span onclick="open_select(this)" class="icon_select_mate">
+                            <svg fill="#fff" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M7.41 7.84L12 12.42l4.59-4.58L18 9.25l-6 6-6-6z"/>
+                                <path d="M0-.75h24v24H0z" fill="none"/>
+                            </svg>
+                        </span>
+                        <div class="cont_list_select_mate">
+                            <ul class="cont_select_int"> </ul>
+                        </div>
+                    </div>
+                    <!-- Custom select structure -->
+                    <div class="select_mate" data-mate-select="active" style="margin-left:10px;">
+                        <select name="" onchange="" onclick="return false;" id="">
+                            <option value="">분</option>
+                            <% for(let i=0;i<60;i+=5){ %>
+                                <% if(i.toString().length === 1){%>
+                                    <option value="<%= "0"+i %>"><%= "0"+i+"분" %></option>
+                                <% }else{ %>
+                                    <option value="<%= i %>"><%= i+"분" %></option>
+                                <% } %>
+                            <% } %>    
+                        </select>
+                        <p class="selecionado_opcion board_minute_4" onclick="open_select(this)"></p>
+                        <span onclick="open_select(this)" class="icon_select_mate">
+                            <svg fill="#fff" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M7.41 7.84L12 12.42l4.59-4.58L18 9.25l-6 6-6-6z"/>
+                                <path d="M0-.75h24v24H0z" fill="none"/>
+                            </svg>
+                        </span>
+                        <div class="cont_list_select_mate">
+                            <ul class="cont_select_int"> </ul>
+                        </div>
+                    </div>
+                    <input type="txet" class="chatValue content_4" maxlength="<%=inputMaxLength%>" placeholder="내용을 입력해주세요.">
+                    <input type="submit" data-idx="4" class="submitBtn" value="입력">
+                </div>
+            </div>
+        </div>
+        <div class="chatContainer">
+            <div class="chatWrap">
+                <div class="chatHeader">
+                    <input type="button" class="clear" data-idx="5" value="Clear">
+                    <h1>재생_후처치</h1>
+                    <input type="button" class="important" value="R">
+                </div>
+                <div class="chatBody custom-scroll board5">
+                    <div>
+                        
+                    </div>
+                </div>
+                <div class="chatFoot">
+                    <!-- Custom select structure -->
+                    <div class="select_mate" data-mate-select="active">
+                        <select name="" onchange="" onclick="return false;" id="">
+                            <option value="">시간</option>
+                            <% for(let i=9;i<23;i++){ %>
+                                <option value="<%=i%>"><%= i+"시" %></option>
+                            <% } %>
+                        </select>
+                        <p class="selecionado_opcion board_hour_5" onclick="open_select(this)"></p>
+                        <span onclick="open_select(this)" class="icon_select_mate">
+                            <svg fill="#fff" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M7.41 7.84L12 12.42l4.59-4.58L18 9.25l-6 6-6-6z"/>
+                                <path d="M0-.75h24v24H0z" fill="none"/>
+                            </svg>
+                        </span>
+                        <div class="cont_list_select_mate">
+                            <ul class="cont_select_int"> </ul>
+                        </div>
+                    </div>
+                    <!-- Custom select structure -->
+                    <div class="select_mate" data-mate-select="active" style="margin-left:10px;">
+                        <select name="" onchange="" onclick="return false;" id="">
+                            <option value="">분</option>
+                            <% for(let i=0;i<60;i+=5){ %>
+                                <% if(i.toString().length === 1){%>
+                                    <option value="<%= "0"+i %>"><%= "0"+i+"분" %></option>
+                                <% }else{ %>
+                                    <option value="<%= i %>"><%= i+"분" %></option>
+                                <% } %>
+                            <% } %>    
+                        </select>
+                        <p class="selecionado_opcion board_minute_5" onclick="open_select(this)"></p>
+                        <span onclick="open_select(this)" class="icon_select_mate">
+                            <svg fill="#fff" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M7.41 7.84L12 12.42l4.59-4.58L18 9.25l-6 6-6-6z"/>
+                                <path d="M0-.75h24v24H0z" fill="none"/>
+                            </svg>
+                        </span>
+                        <div class="cont_list_select_mate">
+                            <ul class="cont_select_int"> </ul>
+                        </div>
+                    </div>
+                    <input type="txet" class="chatValue content_5" maxlength="<%=inputMaxLength%>" placeholder="내용을 입력해주세요.">
+                    <input type="submit" data-idx="5" class="submitBtn" value="입력">
+                </div>
+            </div>
+            <div class="chatWrap">
+                <div class="chatHeader">
+                    <input type="button" class="clear" data-idx="6" value="Clear">
+                    <h1>신환차트</h1>
+                    <input type="button" class="important" value="R">
+                </div>
+                <div class="chatBody custom-scroll board6">
+                    <div>
+                        
+                    </div>
+                </div>
+                <div class="chatFoot">
+                    <!-- Custom select structure -->
+                    <div class="select_mate" data-mate-select="active">
+                        <select name="" onchange="" onclick="return false;" id="">
+                            <option value="">시간</option>
+                            <% for(let i=9;i<23;i++){ %>
+                                <option value="<%=i%>"><%= i+"시" %></option>
+                            <% } %>
+                        </select>
+                        <p class="selecionado_opcion board_hour_6" onclick="open_select(this)"></p>
+                        <span onclick="open_select(this)" class="icon_select_mate">
+                            <svg fill="#fff" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M7.41 7.84L12 12.42l4.59-4.58L18 9.25l-6 6-6-6z"/>
+                                <path d="M0-.75h24v24H0z" fill="none"/>
+                            </svg>
+                        </span>
+                        <div class="cont_list_select_mate">
+                            <ul class="cont_select_int"> </ul>
+                        </div>
+                    </div>
+                    <!-- Custom select structure -->
+                    <div class="select_mate" data-mate-select="active" style="margin-left:10px;">
+                        <select name="" onchange="" onclick="return false;" id="">
+                            <option value="">분</option>
+                            <% for(let i=0;i<60;i+=5){ %>
+                                <% if(i.toString().length === 1){%>
+                                    <option value="<%= "0"+i %>"><%= "0"+i+"분" %></option>
+                                <% }else{ %>
+                                    <option value="<%= i %>"><%= i+"분" %></option>
+                                <% } %>
+                            <% } %>    
+                        </select>
+                        <p class="selecionado_opcion board_minute_6" onclick="open_select(this)"></p>
+                        <span onclick="open_select(this)" class="icon_select_mate">
+                            <svg fill="#fff" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M7.41 7.84L12 12.42l4.59-4.58L18 9.25l-6 6-6-6z"/>
+                                <path d="M0-.75h24v24H0z" fill="none"/>
+                            </svg>
+                        </span>
+                        <div class="cont_list_select_mate">
+                            <ul class="cont_select_int"> </ul>
+                        </div>
+                    </div>
+                    <input type="txet" class="chatValue content_6" maxlength="<%=inputMaxLength%>" placeholder="내용을 입력해주세요.">
+                    <input type="submit" data-idx="6" class="submitBtn" value="입력">
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+
+</html>

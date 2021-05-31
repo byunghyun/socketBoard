@@ -1,0 +1,68 @@
+<div class="popupBg">
+        <div class="popupWrap">
+            <header>
+                <p>수정하기</p>
+            </header>
+            <section>
+                <div class="select_mate" data-mate-select="active" data-indx-select="10" data-selec-open="false" style="top:38px;">
+                    <select name="" onchange="" onclick="return false;" id="">
+                        <option value="">시간</option>
+                        <option value="9">9시</option>
+                        <option value="10">10시</option>
+                        <option value="11">11시</option>
+                        <option value="12">12시</option>
+                        <option value="13">13시</option>
+                        <option value="14">14시</option>
+                        <option value="15">15시</option>
+                        <option value="16">16시</option>
+                        <option value="17">17시</option>
+                        <option value="18">18시</option>
+                        <option value="19">19시</option>
+                        <option value="20">20시</option>
+                        <option value="21">21시</option>
+                        <option value="22">22시</option>
+                    </select>
+                    <p class="selecionado_opcion modify_hour" onclick="open_select(this)" data-n-select="10">시간</p>
+                    <span onclick="open_select(this)" class="icon_select_mate" data-n-select="10">
+                        <svg fill="#fff" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M7.41 7.84L12 12.42l4.59-4.58L18 9.25l-6 6-6-6z"></path>
+                            <path d="M0-.75h24v24H0z" fill="none"></path>
+                        </svg>
+                    </span>
+                    <div class="cont_list_select_mate">
+                        <ul class="cont_select_int"></ul>
+                    </div>
+                </div>
+
+                <div class="select_mate" data-mate-select="active" style="top:38px;margin-left:10px;" data-indx-select="10" data-selec-open="false" >
+                    <select name="" onchange="" onclick="return false;" id="">
+                        <option value="">분</option>
+                        <option value="00">00분</option>
+                        <option value="05">05분</option>
+                        <option value="10">10분</option>
+                        <option value="15">15분</option>
+                        <option value="20">20분</option>
+                        <option value="25">25분</option>
+                        <option value="30">30분</option>
+                        <option value="35">35분</option>
+                        <option value="40">40분</option>
+                        <option value="45">45분</option>
+                        <option value="50">50분</option>
+                        <option value="55">55분</option>
+                    </select>
+                    <p class="selecionado_opcion modify_minute" onclick="open_select(this)" data-n-select="10">분</p>
+                    <span onclick="open_select(this)" class="icon_select_mate" data-n-select="10" style="transform: rotate(0deg);">
+                        <svg fill="#fff" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M7.41 7.84L12 12.42l4.59-4.58L18 9.25l-6 6-6-6z"></path>
+                            <path d="M0-.75h24v24H0z" fill="none"></path>
+                        </svg>
+                    </span>
+                    <div class="cont_list_select_mate">
+                        <ul class="cont_select_int" ></ul>
+                    </div>
+                </div>
+                <input type="txet" class="chatValue modify_content" style="top:104px;" maxlength="50" placeholder="내용을 입력해주세요.">
+                <input type="submit" data-idx="5" class="modifyBtn" style="top:110px;" value="수정">
+            </section>
+        </div>
+    </div>
