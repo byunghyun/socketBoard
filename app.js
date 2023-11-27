@@ -18,7 +18,7 @@ app.use(express.static((path.join(__dirname, 'public'))));
 
 /* NODEJS 기본 세팅 */
 dotenv.config();
-app.set('port', process.env.PORT || 20031);
+app.set('port', process.env.DEV_PORT || 20031);
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 //moment.tz.setDefault("Asia/Seoul");
