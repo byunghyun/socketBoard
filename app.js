@@ -36,8 +36,8 @@ let databaseNam = "HspBoard";
 const databaseOption = "retryWrites=true&w=majority";
 
 //mongodb+srv://craham:dlHn1V8I1uzK4FvA@clustermongo.cwzee.mongodb.net/
-const id = 'craham';
-const pwd = 'dlHn1V8I1uzK4FvA';
+const id = encodeURIComponent('craham');
+const pwd = encodeURIComponent('dlHn1V8I1uzK4FvA');
 const uri = `mongodb+srv://${id}:${pwd}@clustermongo.cwzee.mongodb.net/${databaseNam}?${databaseOption}`;
 
 /* 라우터 설정 */
