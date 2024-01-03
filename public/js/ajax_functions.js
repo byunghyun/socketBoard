@@ -3,6 +3,7 @@ const read_boardLst = (idx) => {
         url: "/board/board"+idx,
         method: "GET",
         success: (data) => {
+            console.log('data', data);
             let tme = "";
             let important = "";
             let appendDOM = "";
