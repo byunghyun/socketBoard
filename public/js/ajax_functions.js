@@ -10,6 +10,7 @@ const read_boardLst = (idx) => {
             for (i = 0; i < data.board.length; i++) {
                 console.log('data.board[i].rsvTme', data.board[i].rsvTme);
                 tme = moment(data.board[i].rsvTme).tz('Asia/Seoul').format('HH:mm');
+                console.log('tme', tme);
                 data.board[i].important === true ? important = `style=color:#fc3e5e` : important = ``;
                 appendDOM += `<p data-idx="${data.board[i].idx}" ${important}>
                                 <span class="time">${tme}</span>
