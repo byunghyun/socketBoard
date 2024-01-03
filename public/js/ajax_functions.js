@@ -8,7 +8,7 @@ const read_boardLst = (idx) => {
             let appendDOM = "";
             $(`.board${idx} div p`).remove();
             for (i = 0; i < data.board.length; i++) {
-                tme = moment(data.board[i].rsvTme).add("15", "h").format('HH:mm');
+                tme = moment(data.board[i].rsvTme).format('HH:mm');
                 data.board[i].important === true ? important = `style=color:#fc3e5e` : important = ``;
                 appendDOM += `<p data-idx="${data.board[i].idx}" ${important}>
                                 <span class="time">${tme}</span>
@@ -33,6 +33,7 @@ const read_boardLst = (idx) => {
 
 //imgaesUri, userIp 차후 개발 고도화 시 추가 가능
 const white_boardLst = (idx, rsvTme, content, important) => {
+    console.log('rsvTme', rsvTme);
     $.ajax({
         url: "/board/board"+idx,
         method: "POST",

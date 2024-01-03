@@ -11,17 +11,19 @@ const {Board4} = require('../models/Board4');
 const {Board5} = require('../models/Board5');
 const {Board6} = require('../models/Board6');
 
-let beforeSearchDateString = moment().add("9", "h").format("YYYY-MM-DD")+" 00:00:00";
-let afterSearchDateString = moment().add("9", "h").format("YYYY-MM-DD")+" 23:59:59";
+let beforeSearchDateString = moment().format("YYYY-MM-DD")+" 00:00:00";
+let afterSearchDateString = moment().format("YYYY-MM-DD")+" 23:59:59";
 
 // UTC+0 기준으로 쿼리를 작성 할 것
 // 리눅스 timeZone을 강제로 변경 할 경우에는 Date부분 변경 필요하나 권장되지 않는 방법
 boardRouter.get("/board1", async(req, res) =>{
+    console.log('beforeSearchDateString', beforeSearchDateString);
+    console.log('afterSearchDateString', afterSearchDateString);
     try{
         const board = await Board1.find({
             "rsvTme" : {
-                "$gte" : beforeSearchDateString,
-                "$lt" : afterSearchDateString
+                "$gte" : new Date(beforeSearchDateString),
+                "$lt" : new Date(afterSearchDateString)
             }
         }).sort({"rsvTme":1});
         return res.send({ board });
@@ -33,6 +35,7 @@ boardRouter.get("/board1", async(req, res) =>{
 
 boardRouter.post("/board1", async(req, res)=> {
     try{
+        console.log('req.body', req.body);
         const board = new Board1(req.body);
         await board.save();
         return res.send({board});
