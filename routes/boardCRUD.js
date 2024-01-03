@@ -2,6 +2,9 @@ const { Router } = require('express');
 const { crossOriginEmbedderPolicy } = require('helmet');
 const boardRouter = Router();
 const moment = require("moment");
+const moment = require('moment-timezone');
+
+moment.tz.setDefault('Asia/Seoul');
 
 /* NODEJS 데이터베이스 스키마 */
 const {Board1} = require('../models/Board1');
