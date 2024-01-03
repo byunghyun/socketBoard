@@ -4,6 +4,7 @@ const express = require('express');
 const app = express();
 const path = require('path');
 const morgan = require('morgan');
+const moment = require("moment");
 
 //const moment = require("moment");
 const helmet = require("helmet");
@@ -26,7 +27,7 @@ dotenv.config();
 app.set('port', 4040);
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
-//moment.tz.setDefault("Asia/Seoul");
+moment.tz.setDefault("Asia/Seoul");
 
 /* NODEJS HTTP 보안 설정 */
 //app.use(helmet());
