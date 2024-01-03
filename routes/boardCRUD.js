@@ -2,7 +2,7 @@ const { Router } = require('express');
 const { crossOriginEmbedderPolicy } = require('helmet');
 const boardRouter = Router();
 const moment = require("moment");
-const moment = require('moment-timezone');
+const momentTimezone = require('moment-timezone');
 
 moment.tz.setDefault('Asia/Seoul');
 
