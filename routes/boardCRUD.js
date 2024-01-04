@@ -14,12 +14,13 @@ const {Board4} = require('../models/Board4');
 const {Board5} = require('../models/Board5');
 const {Board6} = require('../models/Board6');
 
-let beforeSearchDateString = moment().format("YYYY-MM-DD")+" 00:00:00";
-let afterSearchDateString = moment().format("YYYY-MM-DD")+" 23:59:59";
+
 
 // UTC+0 기준으로 쿼리를 작성 할 것
 // 리눅스 timeZone을 강제로 변경 할 경우에는 Date부분 변경 필요하나 권장되지 않는 방법
 boardRouter.get("/board1", async(req, res) =>{
+    const beforeSearchDateString = moment().format("YYYY-MM-DD")+" 00:00:00";
+    const afterSearchDateString = moment().format("YYYY-MM-DD")+" 23:59:59";
     console.log('beforeSearchDateString', beforeSearchDateString);
     console.log('afterSearchDateString', afterSearchDateString);
     try{
@@ -80,6 +81,8 @@ boardRouter.delete("/board1", async(req, res) =>{
 
 boardRouter.delete("/board_clear_1", async(req, res) =>{
     try{
+        const beforeSearchDateString = moment().format("YYYY-MM-DD")+" 00:00:00";
+        const afterSearchDateString = moment().format("YYYY-MM-DD")+" 23:59:59";
         const board = await Board1.DeleteMany({
             "rsvTme" : {
                 "$gte" : new Date(`${beforeSearchDateString}`),
@@ -95,6 +98,8 @@ boardRouter.delete("/board_clear_1", async(req, res) =>{
 
 boardRouter.get("/board2", async(req, res) =>{
     try{
+        const beforeSearchDateString = moment().format("YYYY-MM-DD")+" 00:00:00";
+        const afterSearchDateString = moment().format("YYYY-MM-DD")+" 23:59:59";
         const board = await Board2.find({
             "rsvTme" : {
                 "$gte" : new Date(`${beforeSearchDateString}`),
@@ -154,6 +159,8 @@ boardRouter.delete("/board_clear_2", async(req, res) =>{
     try{
         const {startDate, endDate} = req.params;
         console.log(startDate);
+        const beforeSearchDateString = moment().format("YYYY-MM-DD")+" 00:00:00";
+        const afterSearchDateString = moment().format("YYYY-MM-DD")+" 23:59:59";
         const board = await Board2.remove({
             "rsvTme" : {
                 "$gte" : new Date(`${beforeSearchDateString}`),
@@ -171,6 +178,8 @@ boardRouter.delete("/board_clear_2", async(req, res) =>{
 
 boardRouter.get("/board3", async(req, res) =>{
     try{
+        const beforeSearchDateString = moment().format("YYYY-MM-DD")+" 00:00:00";
+        const afterSearchDateString = moment().format("YYYY-MM-DD")+" 23:59:59";
         const board = await Board3.find({
             "rsvTme" : {
                 "$gte" : new Date(`${beforeSearchDateString}`),
@@ -228,6 +237,8 @@ boardRouter.put("/board3", async(req, res)=> {
 boardRouter.delete("/board_clear_3", async(req, res) =>{
     try{
         const {startDate, endDate} = req.params;
+        const beforeSearchDateString = moment().format("YYYY-MM-DD")+" 00:00:00";
+        const afterSearchDateString = moment().format("YYYY-MM-DD")+" 23:59:59";
         console.log(startDate);
         const board = await Board3.remove({
             "rsvTme" : {
@@ -246,6 +257,8 @@ boardRouter.delete("/board_clear_3", async(req, res) =>{
 
 boardRouter.get("/board4", async(req, res) =>{
     try{
+        const beforeSearchDateString = moment().format("YYYY-MM-DD")+" 00:00:00";
+        const afterSearchDateString = moment().format("YYYY-MM-DD")+" 23:59:59";
         const board = await Board4.find({
             "rsvTme" : {
                 "$gte" : new Date(`${beforeSearchDateString}`),
@@ -303,6 +316,8 @@ boardRouter.put("/board4", async(req, res)=> {
 boardRouter.delete("/board_clear_4", async(req, res) =>{
     try{
         const {startDate, endDate} = req.params;
+        const beforeSearchDateString = moment().format("YYYY-MM-DD")+" 00:00:00";
+        const afterSearchDateString = moment().format("YYYY-MM-DD")+" 23:59:59";
         console.log(startDate);
         const board = await Board4.remove({
             "rsvTme" : {
@@ -322,6 +337,8 @@ boardRouter.delete("/board_clear_4", async(req, res) =>{
 
 boardRouter.get("/board5", async(req, res) =>{
     try{
+        const beforeSearchDateString = moment().format("YYYY-MM-DD")+" 00:00:00";
+        const afterSearchDateString = moment().format("YYYY-MM-DD")+" 23:59:59";
         const board = await Board5.find({
             "rsvTme" : {
                 "$gte" : new Date(`${beforeSearchDateString}`),
@@ -379,6 +396,8 @@ boardRouter.put("/board5", async(req, res)=> {
 boardRouter.delete("/board_clear_5", async(req, res) =>{
     try{
         const {startDate, endDate} = req.params;
+        const beforeSearchDateString = moment().format("YYYY-MM-DD")+" 00:00:00";
+        const afterSearchDateString = moment().format("YYYY-MM-DD")+" 23:59:59";
         console.log(startDate);
         const board = await Board5.remove({
             "rsvTme" : {
@@ -395,6 +414,8 @@ boardRouter.delete("/board_clear_5", async(req, res) =>{
 
 boardRouter.get("/board6", async(req, res) =>{
     try{
+        const beforeSearchDateString = moment().format("YYYY-MM-DD")+" 00:00:00";
+        const afterSearchDateString = moment().format("YYYY-MM-DD")+" 23:59:59";
         const board = await Board6.find({
             "rsvTme" : {
                 "$gte" : new Date(`${beforeSearchDateString}`),
@@ -452,6 +473,8 @@ boardRouter.put("/board6", async(req, res)=> {
 boardRouter.delete("/board_clear_6", async(req, res) =>{
     try{
         const {startDate, endDate} = req.params;
+        const beforeSearchDateString = moment().format("YYYY-MM-DD")+" 00:00:00";
+        const afterSearchDateString = moment().format("YYYY-MM-DD")+" 23:59:59";
         console.log(startDate);
         const board = await Board6.remove({
             "rsvTme" : {
